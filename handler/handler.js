@@ -132,17 +132,17 @@ module.exports = {
                     }
                     
                     if (plugin.group && !m.isGroup) { // Group Only
-                        fail('group', m, this)
+                        m.reply('khusus group.')
                         continue
                     } 
                     
                     if (plugin.botAdmin && !isBotAdmin) { // You Admin
-                        fail('botAdmin', m, this)
+                        m.reply('bot bukan atmin.')
                         continue
                     }
                     
                     if (plugin.admin && !isAdmin && isROwner) { // User Admin
-                        fail('admin', m, this)
+                        m.reply('khusus atmin.')
                         continue
                     }
                     
