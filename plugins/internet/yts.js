@@ -8,9 +8,11 @@ let handler = async(m, {conn, text, command, usedPrefix}) => {
         let response = await fetch(`https://weeb-api.vercel.app/ytsearch?query=${text}`)
         let data = await response.json()
         
-        let teks = `*🌴 YouTube Search Engine 🌴*\n\n🔎 _Search Term:_ *${text}*\n🎐 *Total Results:* *${data.length}*\n\n◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦`;
+        let teks = `*🌴 YouTube Search Engine 🌴*\n\n🔎 _Search Term:_ *${text}*\n🎐 *Total Results:* *${data.length}*\n\n━━━━━━━━━━━━━━━━`;
         for (let i of data ) {
-            teks += global.ytSearch.replace("%title", i.title).replace("%view", i.views).replace("%author", i.author.name).replace("%durasi", i.duration.timestamp).replace("%upload", i.ago).replace("%link", i.url)
+            for (let v = 1; v <= 10; v++) {
+                teks += `[${v}]\n` + global.ytSearch.replace("%title", i.title).replace("%view", i.views.toLocaleString('id-ID')).replace("%author", i.author.name).replace("%durasi", i.duration.timestamp).replace("%upload", i.ago).replace("%link", i.url)
+            }
         }
         await conn.sendMessage(m.chat, {
             text: teks, contextInfo: { mentionedJid: [m.sender],
