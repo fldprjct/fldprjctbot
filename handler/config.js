@@ -54,7 +54,7 @@ global.set = {
 }
 //yts
 global.ytSearch = `
-° *_%title_*
+*_%title_*
 
 ↳ 👀 *_Views :_* %view
 ↳ 👤 *_Author :_* %author
