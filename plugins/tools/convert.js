@@ -4,7 +4,7 @@ const exec = util.promisify(require('child_process').exec);
 
 const converter = async bufferImage => {
   try {
-    let pathFile = "../tmp/" + ~~(Math.random() * 1000000 + 1) + ".webp";
+    let pathFile = "../../tmp/" + ~~(Math.random() * 1000000 + 1) + ".webp";
     fs.writeFileSync(pathFile, bufferImage);
     await exec(`convert ${pathFile} ${pathFile}.gif`);
     await exec(`ffmpeg -i ${pathFile}.gif -movflags faststart -pix_fmt yuv420p -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" ${pathFile}.mp4`);
