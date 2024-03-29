@@ -1,5 +1,5 @@
 module.exports = {
-    async welcome(chatUpdate) {
+    async participantsUpdate(chatUpdate) {
         const { id, participants, action } = chatUpdate
         if (global.db.data.settings[conn.user.jid].self == true) return
         if (this.isInit) return
