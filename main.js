@@ -187,7 +187,7 @@ global.start = async function() {
    // event
    conn.ev.on("connection.update", connectionUpdate.bind(conn));
    conn.ev.on("messages.upsert", require("./handler/handler").handler.bind(conn));
-   conn.ev.on("group-participants.update", require("./handler/welcome").welcome.bind(conn))
+   conn.ev.on("group-participants.update", require("./handler/welcome.js").participantsUpdate.bind(conn))
    conn.ev.on("presence.update", require("./handler/presenceUpdate.js").presenceUpdate.bind(conn))
    return conn;
 }
