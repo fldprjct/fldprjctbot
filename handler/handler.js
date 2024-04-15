@@ -173,13 +173,15 @@ module.exports = {
                         let users = global.db.data.users[m.sender]
                         
                         if(setting.groupmode == true) {
-                            if (!isOwner && !m.chat.endsWith('g.us')) {
-                                if (users.warning === 3) {
-                                    users.banned = true
-                                    throw m.reply("kepala batu gw banned lu asw!!")
-                                } else {
-                                    users.warning += 1
-                                    throw m.reply(global.peringatan.replace("%angka", users.warning))
+                            if (!isOwner  && !m.chat.endsWith('g.us')) {
+                                if (!users.premium) {
+                                    if (users.warning === 3) {
+                                        users.banned = true
+                                        throw m.reply("kepala batu gw banned lu asw!!")
+                                    } else {
+                                        users.warning += 1
+                                        throw m.reply(global.peringatan.replace("%angka", users.warning))
+                                    }
                                 }
                             }
                         }
