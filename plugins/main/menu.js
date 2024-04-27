@@ -21,24 +21,23 @@ let tags = {
 
 const defaultMenu = {
   before: `
-Halo *%name* !
-Saya Bot yang siap membantu anda mendownload dan
-mencari informasi melalui WhatsApp.
-
-◦ *Limit :* %limit
-◦ *Versi :* ${package.version}
-◦ *Total :* %totalfitur fitur
-◦ *Uptime :* %uptime
-◦ *Library :* @whiskeysockets/baileys: ${package.dependencies['@whiskeysockets/baileys']}
-
-*_Note:_*
-jika ingin request fitur silahkan ketik .request <fitur>
-jika menemukan bug pada bot ini silahkan laporkan dengan cara .report <bug/fitur>
+╭───✧ 𝖐𝖙𝖉𝖕𝖗𝖏𝖈𝖙 𝖇𝖔𝖙 ✧───◆
+┃❃╭───────────
+┃❃│ User : %name
+┃❃│ Time : %time
+┃❃│ Date : %date
+┃❃│ Mode : public
+┃❃│ Uptime : %uptime
+┃❃│ version : ${package.version}
+┃❃│ Library : baileys
+┃❃│ Commands : %totalfitur
+┃❃╰────────────
+╰────✧ ©fldprj03 ✧───◆
 
 %readmore`.trimStart(),
-  header: '┌	◦ *%category*',
-  body: '│	◦ %cmd %isReg %islimit %isPremium',
-  footer: '└	◦ ◦ ◦\n',
+  header: '*╭────✧* *%category* *✧⊷*',
+  body: '*┃✧* %cmd %isReg %islimit %isPremium',
+  footer: '*╰═════════════⊷*\n',
   after: `
 `,
 }
@@ -54,26 +53,28 @@ let handler = async (m, { conn, usedPrefix: _p, expiration}) => {
     }).length
   
     let d = new Date(new Date + 3600000)
-    let locale = 'id'
+    let locale = 'id-ID'
     // d.getTimeZoneOffset()
     // Offset -420 is 18.00
     // Offset    0 is  0.00
     // Offset  420 is  7.00
     let week = d.toLocaleDateString(locale, { weekday: 'long' })
     let date = d.toLocaleDateString(locale, {
+      timeZone: 'Asia/Makassar',
       day: 'numeric',
       month: 'long',
       year: 'numeric'
     })
-    let dateIslamic = Intl.DateTimeFormat(locale + '-TN-u-ca-islamic', {
+    /*let dateIslamic = Intl.DateTimeFormat(locale + '-TN-u-ca-islamic', {
       day: 'numeric',
       month: 'long',
       year: 'numeric'
-    }).format(d)
+    }).format(d)*/
     let time = d.toLocaleTimeString(locale, {
+      timeZone: 'Asia/Makassar',
       hour: 'numeric',
       minute: 'numeric',
-      second: 'numeric'
+      second: 'numeric',
     })
     let _uptime = process.uptime() * 1000
     let _muptime
@@ -134,7 +135,14 @@ let handler = async (m, { conn, usedPrefix: _p, expiration}) => {
       me: conn.user.name,
       version: package.version,
       totalfitur: totalf,
-      limit, name, week, date, dateIslamic, time, totalreg, rtotalreg,
+      limit,
+      name,
+      week, 
+      date, 
+      //dateIslamic, 
+      time, 
+      totalreg, 
+      rtotalreg,
       readmore: readMore
     }
     text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])
