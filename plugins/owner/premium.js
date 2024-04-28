@@ -4,8 +4,10 @@ let handler = async(m, { conn, text, usedPrefix, command }) => {
     else who = m.chat
     let user = db.data.users[who]
     if (who) {
-        user.premium = true
-        m.reply(`✔️ Success`)
+        if ( who === user.premium = true) {
+            user.premium = true
+            m.reply(`✔️ Success`)
+        } else return m.reply("user sudah premium..")
     } else return m.reply(`tag or mention someone!`)
 }
 handler.help = ['addprem [@user]']
