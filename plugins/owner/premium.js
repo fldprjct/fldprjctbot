@@ -4,7 +4,7 @@ let handler = async(m, { conn, text, usedPrefix, command }) => {
     else who = m.chat
     let user = db.data.users[who]
     if (who) {
-        if ( who === user.premium = true) {
+        if ( who !== user.premium) {
             user.premium = true
             m.reply(`✔️ Success`)
         } else return m.reply("user sudah premium..")
