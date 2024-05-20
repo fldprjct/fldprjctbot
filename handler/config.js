@@ -52,6 +52,20 @@ global.set = {
         }
     },
 }
+
+const fakeM = {
+    "key": {
+        "participants":"62895323071410@s.whatsapp.net",
+        "remoteJid": "status@broadcast", // "0@s.whatsapp.net",
+        "fromMe": false,
+        "id": "Halo"
+    },
+    "message": {
+        "conversation": "tes"
+    },
+    "participant": "0@s.whatsapp.net"
+}
+
 //yts
 global.ytSearch = `
 *_%title_*
