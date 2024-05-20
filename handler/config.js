@@ -53,7 +53,7 @@ global.set = {
     },
 }
 
-const fakeM = {
+global.fakeMen = {
     "key": {
         "participants":"62895323071410@s.whatsapp.net",
         "remoteJid": "status@broadcast", // "0@s.whatsapp.net",
