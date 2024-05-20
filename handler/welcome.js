@@ -30,7 +30,7 @@ module.exports = {
                                     sourceUrl: global.set.linkGc
                                 }
                             }
-                        })
+                        }, fakeMen)
                     }
                 }
             break
