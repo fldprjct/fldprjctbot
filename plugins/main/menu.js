@@ -162,7 +162,7 @@ let handler = async (m, { conn, usedPrefix: _p, expiration}) => {
         mediaUrl: ``
       }
     }
-  }, {quoted: m})
+  }, {quoted: fakeMen})
     //conn.send2ButtonImg(m.chat, `https://telegra.ph/file/9ad3a925d572438242a1e.jpg`, text.trim(), '🅛=limit 🅟=premium', 'donate', `${_p}donate`, `owner`,`${_p}owner`, m)
     //conn.send2ButtonImg(m.chat, `https://telegra.ph/file/9ad3a925d572438242a1e.jpg`, text.trim())
   } catch (e) {
