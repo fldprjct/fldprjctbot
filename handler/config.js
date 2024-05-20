@@ -29,6 +29,9 @@ const sticker_author = `sticker = {
 global.set = {
     name: "ktdprjct'bot",
     version: "3.0.0",
+    wait: "🔁",
+    sukses: "💯",
+    gagal: "🚫",
     limit: "10",
     linkIg: "https://www.instagram.com/fldrj03",
     linkGh: "https://github.com",
