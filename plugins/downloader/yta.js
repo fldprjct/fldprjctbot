@@ -5,7 +5,8 @@ let handler = async(m, {conn, args, text, command, usedPrefix}) => {
     if(!text) throw conn.reply(m.chat, `Contoh: ${usedPrefix + command} url`, m)
     if (!(text.includes('http://') || text.includes('https://'))) return m.reply(`url invalid, please input a valid url. Try with add http:// or https://`);
     //if (!text.includes('youtube.com')) return m.reply(`Hanya support url youtube.com`);
-    
+    const { key } = await conn.reply(m.chat, set.textwait, m);
+    m.react(set.wait)
     try {
         let Ytdl = await ytmp3(args[0])
         let limit = 600 < Ytdl.meta.seconds
@@ -28,39 +29,20 @@ let handler = async(m, {conn, args, text, command, usedPrefix}) => {
             }
         }
         if(!limit) {
-            await conn.sendMessage(m.chat, doc, { quoted: m })
+            await conn.sendMessage(m.sender, doc, { quoted: fakeMen })
+            conn.editMessage(m.chat, key, set.textsukses, m)
+            m.react(set.sukses)
         } else {
-            m.reply("hanya bisa mendownload media di bawah 10 menit...")
+            conn.editMessage(m.chat, key, "hanya bisa mendownload media di bawah 10 menit...", m)
         }
     } catch (e) {
         console.log(e)
         try {
-            let ytdl2 = await (await fetch(`https://skizo.tech/api/yt1s?url=${text}&apikey=filand`)).json()
-            let res_m = await ytdl2.audio['128kbps'].url
-            let doc = {
-                audio: {
-                    url: res_m
-                },
-                mimetype: "audio/mp4",
-                ptt: true,
-                fileName: ytdl2.title,
-                contextInfo: {
-                    externalAdReply: {
-                        showAdAttribution: true,
-                        mediaType: 2,
-                        mediaUrl: args[0],
-                        title: "↺ |◁   II   ▷|   ♡",
-                        body: set.name + " [ V.2 ]",
-                        sourceUrl: args[0],
-                        thumbnail: await (await fetch(ytdl2.thumbnail)).buffer()
-                    }
-                }
-            }
-            await conn.sendMessage(m.chat, doc, { quoted: m })
             
         } catch (e) {
             console.log(e)
-            m.reply('gagal dalam mendownload audio..')
+            conn.editMessage(m.chat, key, set.textgagal, m)
+            m.react(set.gagal)
         }
     }
 }
