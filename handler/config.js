@@ -27,16 +27,19 @@ const sticker_author = `sticker = {
 }`
 
 global.set = {
+    limit: "10",
     name: "ktdprjct'bot",
     version: "3.0.0",
     wait: "🔄",
     sukses: "💯",
     gagal: "🚫",
-    limit: "10",
+    textWait: "sedang di proses...",
+    textsukses: "Media telah dikirimkan ke chat pribadi",
+    textgagal: "terjadi kesalahan saat mendownload media, silahkan lapor ke atmin...",
     linkIg: "https://www.instagram.com/fldrj03",
     linkGh: "https://github.com",
-    linkGc: "https://chat.whatsapp.com/KZwneZawhyx5udc2XzUe7W",
-    thumbnail: "https://telegra.ph/file/46d32e6436cafe9bd06bf.jpg",
+    linkGc: "https://chat.whatsapp.com/LntFjg3kYOq8eyFt97ZRDQ",
+    thumbnail: "https://telegra.ph/file/1cdcec170333ccb0eff98.jpg",
     pack: sticker_name,
     auth: sticker_author,
     owner: [
