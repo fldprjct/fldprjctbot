@@ -33,7 +33,7 @@ global.set = {
     wait: "🔄",
     sukses: "💯",
     gagal: "🚫",
-    textWait: "sedang di proses...",
+    textwait: "sedang di proses...",
     textsukses: "Media telah dikirimkan ke chat pribadi",
     textgagal: "terjadi kesalahan saat mendownload media, silahkan lapor ke atmin...",
     linkIg: "https://www.instagram.com/fldrj03",
