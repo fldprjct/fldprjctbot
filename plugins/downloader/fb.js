@@ -2,16 +2,20 @@ const fetch = require("node-fetch")
 
 let handler = async(m, {conn, text}) => {
     try {
-        m.reply("wait...")
+        const { key } = await conn.reply(m.chat, set.textwait, m);
+        m.react(set.wait)
         let res = await fetch(`https://aemt.me/download/fbdown?url=${text}`)
         let data = await res.json()
         let hasil = data.result.url.urls[0].hd
-        conn.sendFile(m.chat, hasil, "", set.name, m)
+        conn.sendFile(m.sender, hasil, "", set.name, fakeMen)
+        conn.editMessage(m.chat, key, set.textsukses, m)
+        m.react(set.sukses)
     } catch (e) {
         try {
             
         } catch (e) {
-            m.reply("error...")
+            conn.editMessage(m.chat, key, set.textgagal, m)
+            m.react(set.gagal)
         }
     }
 }
