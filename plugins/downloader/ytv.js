@@ -3,20 +3,25 @@ let ytdl = require('ytdl-core')
 
 let handler = async(m, {conn, args, text, command, usedPrefix}) => {
     if(!text) throw conn.reply(m.chat, `Contoh: ${usedPrefix + command} url`, m)
-    if (!(text.includes('http://') || text.includes('https://'))) return m.reply(`url invalid, please input a valid url. Try with add http:// or https://`);
+    if (!(text.includes('http://') || text.includes('https://'))) return m.reply(`url invalid, please input a valid url. Try with add http:// or https://`)
     //if (!text.includes('youtube.com')) return m.reply(`Hanya support url youtube.com`);
+    const { key } = await conn.reply(m.chat, set.textwait, m);
+    m.react(set.wait)
     try {
         let Ytdl = await ytmp4(args[0])
         let limit = 600 < Ytdl.meta.seconds
         
         if(!limit) {
-            await conn.sendFile(m.chat, Ytdl.buffer, "", Ytdl.meta.title + `\n\n${set.name}`, m)
+            await conn.sendFile(m.sender, Ytdl.buffer, "", Ytdl.meta.title + `\n\n${set.name}`, fakeMen)
+            conn.editMessage(m.chat, key, set.textsukses, m)
+            m.react(set.sukses)
         } else {
-            m.reply("hanya bisa mendownload media di bawah 10 menit...")
+            conn.editMessage(m.chat, key, "hanya bisa mendownload media di bawah 10 menit...", m)
         }
     } catch (e) {
         console.log(e)
-        m.reply('gagal dalam mendownload media..')
+        conn.editMessage(m.chat, key, set.textgagal, m)
+        m.react(set.gagal)
     }
 }
 handler.help = ['ytmp4'].map(v => v + ' <url>')
