@@ -13,8 +13,8 @@ module.exports = (m, conn = { user: {} }) => {
         if (!isNumber(user.limit)) user.limit = global.set.limit
         if (!('registered' in user)) user.registered = false
         if (!user.registered) {
-            if (!('name' in user)) user.name = conn.getName(m.chat)
-            if (!('email' in user)) user.email = ''
+            if (!('name' in user)) user.name = ''
+            if (!('age' in user)) user.age = ''
             if (!isNumber(user.regTime)) user.regTime = -1
         }
     } else global.db.data.users[m.sender] = {
@@ -26,8 +26,8 @@ module.exports = (m, conn = { user: {} }) => {
         warning: 0,
         limit: global.set.limit,
         registered: false,
-        name: conn.getName(m.chat),
-        email: '',
+        name: '',
+        age: '',
         regTime: -1
     }
     
