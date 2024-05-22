@@ -10,6 +10,7 @@
     },
     "dependencies": {
         "@adiwajshing/keyed-db": "latest",
+        "@haileybot/captcha-generator": "*",
         "@whiskeysockets/baileys": "^6.5.0",
         "awesome-phonenumber": "^2.69.0",
         "axios": "^0.26.0",
