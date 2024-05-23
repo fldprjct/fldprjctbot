@@ -12,7 +12,7 @@ handler.before = async function(m, { conn, isOwner }) {
         if (m.id === message.id) return;
         if (m.id === key.id) return;
         if (m.text == captcha) {
-            user.name = name.trim();
+            user.name = names.trim();
             user.age = age;
             user.regTime = +new Date;
             user.registered = true;
