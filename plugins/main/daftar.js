@@ -32,7 +32,7 @@ let handler = async(m, {conn, text}) => {
         captcha: captcha.value,
         timeout: setTimeout(() => {
             conn.sendMessage(m.chat, { delete: key });
-            delete conn.registrasi[m.sender];
+            delete conn.regist[id];
         }, 60 * 1000)
     }
 }
