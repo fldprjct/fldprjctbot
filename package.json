@@ -1,7 +1,7 @@
 {
     "name": "fldprjct bot",
     "author": "fldrj03",
-    "version": "3.0.0",
+    "version": "3.5.7",
     "description": "wangsaff bot",
     "main": "index.js",
     "type": "commonjs",
