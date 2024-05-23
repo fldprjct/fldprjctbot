@@ -1,19 +1,19 @@
 const Captcha = require("@haileybot/captcha-generator");
-let Reg = /\|?(.*)([^\w\s])([0-9]*)$/i;
 
 let handler = async(m, {conn, text}) => {
     conn.regist = conn.regist ? conn.regist : {}
     // daftar
+    if (!text) return m.reply("masukkan nama dan umur\nContoh: .reg fldrj03.18")
     let user = global.db.data.users[m.sender]
     if (conn.regist[m.sender]) return m.reply('kamu sudah mengajukan pendaftaran, silahkan verifikasi captcha...');
-    if(user.registered === true) m.reply("kamu sudah terdaftar di database bot")
-    let [name, age] = text.match(Reg);
-    if (!name) m.reply("Nama tidak boleh kosong (Alphanumeric)")
-    if (!age) m.reply("Umur tidak boleh kosong (Angka)")
+    if(user.registered === true) return m.reply("kamu sudah terdaftar di database bot")
+    let [name, age] = text.split `.`
+    if (!name) return m.reply("Nama tidak boleh kosong (Alphanumeric)")
+    if (!age) return m.reply("Umur tidak boleh kosong (Angka)")
     age = parseInt(age);
-    if (age > 25) m.reply("*Gak boleh!*,\nTua Amat Dah 🗿")
-    if (age < 5) m.reply("*Gak boleh!*,\nBanyak Pedo 🗿")
-    if (user.name && user.name.trim() === name.trim()) m.reply("Nama sudah dipakai...")
+    if (age > 25) return m.reply("*Gak boleh!*,\nTua Amat Dah 🗿")
+    if (age < 5) return m.reply("*Gak boleh!*,\nBanyak Pedo 🗿")
+    if (user.name && user.name.trim() === name.trim()) return m.reply("Nama sudah dipakai...")
     
     // Captcha
     let captcha = new Captcha();
@@ -22,7 +22,7 @@ let handler = async(m, {conn, text}) => {
     
     // db
     const id = m.sender
-    conn.sendMail[id] = {
+    conn.regist[id] = {
         message: m,
         id: m.sender,
         names: name,
@@ -34,29 +34,6 @@ let handler = async(m, {conn, text}) => {
             conn.sendMessage(m.chat, { delete: key });
             delete conn.registrasi[m.sender];
         }, 60 * 1000)
-    }
-}
-
-handler.before = async (m, { conn }) => {
-    conn.regist = conn.regist ? conn.regist : {}
-    if (m.isBaileys) return;
-    if (!conn.registrasi[m.sender]) return;
-    if (!m.text) return;
-    let { id, names, age, message, key, user, captcha, timeout} = conn.registrasi[m.sender]
-    if (m.id === message.id) return;
-    if (m.id === key.id) return;
-    if (m.text == captcha) {
-        user.name = name.trim();
-        user.age = age;
-        user.regTime = +new Date;
-        user.registered = true;
-        let benar = `🐾 ᴏᴛᴘ ʙᴇɴᴀʀ!\n${m.sender.split('@')[0]} ᴛᴇʟᴀʜ ᴅɪ ᴠᴇʀɪғɪᴋᴀsɪ!\n\n`;
-        conn.reply(m.chat, benar + set.name, fakeMen);
-        clearTimeout(timeout);
-        conn.sendMessage(m.chat, { delete: key });
-        delete conn.registrasi[m.sender];
-    } else {
-        m.reply(`✖️ ᴏᴛᴘ sᴀʟᴀʜ!`);
     }
 }
 
