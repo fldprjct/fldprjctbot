@@ -17,7 +17,8 @@ let handler = async(m, {conn, text}) => {
     
     // Captcha
     let captcha = new Captcha();
-    let confirm = "☘️ ʀᴇᴘʟʏ ᴘᴇsᴀɴ ɪɴɪ ᴅᴇɴɢᴀɴ ᴍᴇɴɢᴇᴛɪᴋ ᴋᴏᴅᴇ ᴏᴛᴘ ʏᴀɴɢ ᴀᴅᴀ ᴘᴀᴅᴀ ɢᴀᴍʙᴀʀ!";
+    let captcha2 = captcha.value.toLowerCase()
+    let confirm = "☘️ ᴋᴇᴛɪᴋ ᴋᴏᴅᴇ ᴏᴛᴘ ʏᴀɴɢ ᴀᴅᴀ ᴘᴀᴅᴀ ɢᴀᴍʙᴀʀ!";
     let { key } = await conn.sendFile(m.chat, captcha.dataURL, '', confirm, fakeMen);
     
     // db
@@ -29,7 +30,8 @@ let handler = async(m, {conn, text}) => {
         age: age,
         user,
         key,
-        captcha: captcha.value,
+        captcha1: captcha.value,
+        captcha2: captcha2,
         timeout: setTimeout(() => {
             conn.sendMessage(m.chat, { delete: key });
             delete conn.regist[id];
