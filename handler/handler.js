@@ -116,8 +116,8 @@ module.exports = {
                     m.plugin = name;
                     // wajib regist
                     let user = global.db.data.users[m.sender];
-                    if (name != 'daftar.js' && !user.registered) { // pengecualian fitur regist
-                        m.reply("daftar dulu sebelum pake bot\n.reg nama.umur")
+                    if (name != 'daftar.js' && !user.registered && !isOwner) { // pengecualian fitur regist
+                        m.reply("daftar dulu sebelum pake bot\ncontoh: .reg fldrj03.18")
                         return
                     }
                     
