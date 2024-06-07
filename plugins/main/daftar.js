@@ -11,7 +11,7 @@ let handler = async(m, {conn, text}) => {
     let [name, age] = text.split `.`
     if (!name) return m.reply("Nama tidak boleh kosong (Alphabet)")
     if (!age) return m.reply("Umur tidak boleh kosong (Angka)")
-    if (isNaN(name)) return m.reply("nama harus alphabet")
+    if (!isNaN(name)) return m.reply("nama harus alphabet")
     if (isNaN(age)) return m.reply("umur harus angka!!")
     age = parseInt(age);
     if (age > 25) return m.reply("*Gak boleh!*,\nTua Amat Dah 🗿")
