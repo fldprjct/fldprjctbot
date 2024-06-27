@@ -1,4 +1,5 @@
 const fetch = require("node-fetch")
+const { tiktokdl } = require('tiktokdl')
 let handler = async(m, {conn, text, usedPrefix, command}) => {
     if(!text) throw conn.reply(m.chat, `Contoh: ${usedPrefix + command} url`, m)
     if (!text.match(/((www|vt|vm).tiktok.com)/gi)) throw m.reply(`Url salah, perintah ini untuk mengunduh Media Tiktok`)
