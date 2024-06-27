@@ -20,8 +20,8 @@ let handler = async(m, {conn, text, usedPrefix, command}) => {
             m.react(set.sukses)
         } catch {
             try {
-                let tiktok = await (await fetch(`https://aemt.me/download/tiktokdl?url=${text}`)).json()
-                let hasil = tiktok.result.video
+                let tiktok = await tiktokdl(text);
+                let hasil = tiktok.video;
                 conn.sendFile(m.sender, hasil, "", `v.3\n\n${set.name}`, fakeMen)
                 conn.editMessage(m.chat, key, set.textsukses, m)
                 m.react(set.sukses)
