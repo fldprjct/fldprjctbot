@@ -1,5 +1,6 @@
 const fetch = require('node-fetch');
 const uploader = require("../../lib/uploader")
+const { remini } = require('betabotz-tools');
 
 let handler = async (m, {conn}) => {
     try {
@@ -14,16 +15,31 @@ let handler = async (m, {conn}) => {
             let hasil = remini.url;
             
             m.reply(`Sedang memproses...`);
-            await conn.sendFile(m.chat, hasil, 'hade.jpg', 'HD kan? kagak:v', m);
+            await conn.sendFile(m.chat, hasil, 'hade.jpg', 'HD kan? kagak:v\n\nv.1', m);
         } else {
             m.reply('Mohon kirimkan gambar.');
         }
-    } catch (error) {
-        console.error(error);
-        m.reply('Terjadi kesalahan saat memproses gambar.');
+    } catch (e) {
+        try {
+            let q = m.quoted ? m.quoted : m;
+            let mime = (q.msg || q).mimetype || '';
+            
+            if (/image/.test(mime)) {
+                let media = await q.download();
+                let link = await uploader(media)
+                let response = await remini(link)
+                let hasil = response.image_data;
+                
+                m.reply(`Sedang memproses...`);
+                await conn.sendFile(m.chat, hasil, 'hade.jpg', 'HD kan? kagak:v\n\nv.2', m);
+            }
+        } catch (e) {
+            console.error(e);
+            m.reply('Terjadi kesalahan saat memproses gambar.');
+        }
     }
 };
-handler.help = ['remini'].map(v => v + '<reply gambar>')
+handler.help = ['remini', 'hd'].map(v => v + '<reply gambar>')
 handler.tags = ['tools']
-handler.command = /^remini$/i;
+handler.command = /^(remini|hd)$/i;
 module.exports = handler;
