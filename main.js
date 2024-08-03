@@ -163,7 +163,7 @@ global.start = async function() {
       logger: P, // P for hidden log console
       printQRInTerminal: !usePairingCode, // If you want to use scan, then change the value of this variable to false
       mobile: useMobile,
-      browser: ['Chrome (Linux)', '', ''], // If you change this then the pairing code will not work
+      browser: ['Mac OS', 'safari', '5.1.10'], // If you change this then the pairing code will not work
       auth: {
          creds: state.creds,
          keys: makeCacheableSignalKeyStore(state.keys, P),
