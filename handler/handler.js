@@ -117,7 +117,7 @@ module.exports = {
                     // wajib regist
                     let user = global.db.data.users[m.sender];
                     if (name != 'daftar.js' && !user.registered && !isOwner) { // pengecualian fitur regist
-                        m.reply("daftar dulu sebelum pake bot\ncontoh: .reg fldrj03.18")
+                        m.reply("Anda terdeteksi belum terdaftar di database bot\nDaftar dulu sebelum pakai bot\n\nContoh:\n.reg ryhardev.14")
                         return
                     }
                     
@@ -184,7 +184,7 @@ module.exports = {
                                     if (name != 'daftar.js') {
                                         if (users.warning === 3) {
                                             users.banned = true
-                                            throw m.reply("kepala batu gw banned lu asw!!")
+                                            throw m.reply("Tebanned!")
                                         } else {
                                             users.warning += 1
                                             throw m.reply(global.peringatan.replace("%angka", users.warning))
