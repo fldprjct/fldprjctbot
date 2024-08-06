@@ -3,7 +3,7 @@ let path = require('path')
 let package = require('../../package.json')
 let fetch = require('node-fetch')
 let tags = {
-  'main': 'M A I N && I N F O',
+  'main': 'M A I N',
   'internet': 'I N T E R N E T',
   'tools': 'T O O L S',
   'downloader': 'D O W N L O A D E R',
