@@ -54,6 +54,6 @@ let handler = async(m, {conn, text}) => {
 }
 
 handler.help = ["daftar", "register"].map(v => v + " <nama>.<umur>");
-handler.tags = ["xp"];
+handler.tags = ["main"];
 handler.command = /^(register|verify|daftar|reg(is)?|verif)$/i;
 module.exports = handler
