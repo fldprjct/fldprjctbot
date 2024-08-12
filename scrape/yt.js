@@ -1,6 +1,6 @@
 let axios = require("axios")
 
-export class Ytdl {
+class Ytdl {
     constructor() {
         this.baseUrl = 'https://id-y2mate.com';
     }
@@ -92,3 +92,5 @@ export class Ytdl {
         return { title, video, audio };
     }
 }
+
+module.export = Ytdl
