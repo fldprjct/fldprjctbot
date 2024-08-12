@@ -1,4 +1,4 @@
-import { Ytdl } from '../scrape/yt.js'
+let { Ytdl } = require('../scrape/yt.js')
 
 let handler = m => m
 handler.before = async function (m, {conn}) {
