@@ -117,7 +117,7 @@ module.exports = {
                     // wajib regist
                     let user = global.db.data.users[m.sender];
                     if (name != 'daftar.js' && !user.registered && !isOwner) { // pengecualian fitur regist
-                        m.reply("Anda terdeteksi belum terdaftar di database bot\nDaftar dulu sebelum pakai bot\n\nContoh:\n.reg ryhardev.14")
+                        m.reply("Anda terdeteksi belum terdaftar di database bot\nDaftar dulu sebelum pakai bot\n\nContoh:\n.reg fldrj.14")
                         return
                     }
                     
