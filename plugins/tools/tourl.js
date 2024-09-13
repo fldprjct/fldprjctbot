@@ -1,5 +1,7 @@
 const uploader = require("../../lib/uploader")
 const fetch = require("node-fetch")
+const { Catbox } = require("node-catbox")
+
 let handler = async(m, {conn}) => {
     try {
         let q = m.quoted ? m.quoted : m;
@@ -7,7 +9,12 @@ let handler = async(m, {conn}) => {
         
         if (/image/.test(mime)) {
             let media = await q.download();
-            let link = await uploader(media)
+            let file = await conn.getFile(media, true)
+            let { res, data, filename, mime } = file;
+            let catbox = new Catbox()
+            const link = await catbox.uploadFile({
+            	path: file.filename
+            });
             let text = `*TO URL*\n\nUrl: ${link}\n${media.length} Byte(s)`
             conn.sendMessage(m.chat, {
                 text: text, contextInfo: { mentionedJid: [m.sender],
