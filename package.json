@@ -10,6 +10,7 @@
     },
     "dependencies": {
         "@adiwajshing/keyed-db": "latest",
+        "@distube/ytdl-core": "^4.13.5",
         "@haileybot/captcha-generator": "*",
         "@whiskeysockets/baileys": "^6.7.7",
         "awesome-phonenumber": "^2.69.0",
