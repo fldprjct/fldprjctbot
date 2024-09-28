@@ -1,5 +1,5 @@
 let fetch = require("node-fetch")
-let ytdl = require('ytdl-core')
+let ytdl = require('@distube/ytdl-core')
 
 let handler = async(m, {conn, args, text, command, usedPrefix}) => {
     if(!text) throw conn.reply(m.chat, `Contoh: ${usedPrefix + command} url`, m)
