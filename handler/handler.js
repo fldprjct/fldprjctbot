@@ -201,14 +201,47 @@ module.exports = {
                         //call
                         await plugin.call(this, m, extra);
                     } catch (e) {
-                        console.log(e);
+                        m.error = e
+                        //console.error(e)
+                        if (e) {
+                            let text = util.format(e.message ? e.message : e)
+                            m.reply(text)
                     }
                 }
             }
         } finally {
             require("../lib/print")(this, m).catch((e) => console.log(e));
         }
-        //autoRead
-        await conn.readMessages([m.key])
+        //autoRead && autoReact sw
+        const emojis = ["🔥", "💜"];
+        if (m.key.remoteJid === 'status@broadcast') {
+            if (m.key.fromMe) return
+            const currentTime = Date.now()
+            const messageTime = m.messageTimestamp * 1000
+            const timeDiff = currentTime - messageTime
+            
+            if (m.pushName && m.pushName.trim() !== "") {
+                await conn.readMessages([m.key])
+                const timestamp = Date.now()
+                const dateObject = new Date(timestamp)
+                const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu']
+                const dayName = days[dateObject.getDay()]
+                const date = dateObject.getDate()
+                const month = dateObject.getMonth() + 1
+                const year = dateObject.getFullYear()
+                const key = m.key
+                const status = m.key.remoteJid
+                const me = await conn.decodeJid(conn.user.id)
+                const emoji = emojis[Math.floor(Math.random() * emojis.length)]
+                await conn.sendMessage(status, { react: { key: key, text: emoji } }, { statusJidList: [key.participant, me] }).catch(() => {})
+                process.stdout.write('\x1b[2J\x1b[0f')
+                
+                let tek = `REACTION STORY\n`
+                    tek += `\n• Name: ${m.pushName}\n`
+                    tek += `• Date: ${dayName}, ${date}/${month}/${year}\n`
+                    tek += `• React: ${emoji}`
+                conn.reply("62895323071410@s.whatsapp.net", tek, m)
+            }
+        }
     }
 }
